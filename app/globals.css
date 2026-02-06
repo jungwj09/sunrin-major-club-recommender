@@ -1,56 +1,369 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  min-height: 100vh;
-  padding: 20px;
-  color: #333;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid #667eea;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+header h2 {
+    font-size: 1.5rem;
+    color: #666;
+    font-weight: 400;
+}
+
+.section {
+    display: none;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.section.active {
+    display: block;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 학과 선택 화면 */
+#departmentSelection h3 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.department-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.department-card {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 15px;
+    padding: 30px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+}
+
+.department-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    border-color: #667eea;
+}
+
+.dept-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.department-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.department-card p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* 설문조사 화면 */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.question {
+    display: none;
+}
+
+.question.active {
+    display: block;
+    animation: slideIn 0.4s ease;
 }
 
 @keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.question h3 {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.option {
+    background: #f8f9fa;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.option:hover {
+    background: #e8f0fe;
+    border-color: #667eea;
+    transform: translateX(5px);
+}
+
+.option.selected {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: #667eea;
+    font-weight: 600;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+.btn {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    flex: 1;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+}
+
+.btn-secondary:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* 로딩 화면 */
+#loadingSection {
+    text-align: center;
+    padding: 60px 0;
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 30px;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
-.animate-fadeIn {
-  animation: fadeIn 0.5s ease-in;
+#loadingSection p {
+    font-size: 1.2rem;
+    color: #666;
 }
 
-.animate-slideIn {
-  animation: slideIn 0.4s ease;
+/* 결과 화면 */
+#resultSection h3 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #667eea;
 }
 
-.animate-spin {
-  animation: spin 1s linear infinite;
+.result-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.result-card h4 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.result-card .club-type {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 20px;
+}
+
+.result-card .club-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.result-card .ai-reason {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.result-card .ai-reason h5 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.other-clubs {
+    margin-top: 40px;
+}
+
+.other-clubs h4 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.club-item {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border-left: 4px solid #667eea;
+}
+
+.club-item h5 {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.club-item .club-type {
+    font-size: 0.9rem;
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+.club-item p {
+    color: #666;
+    line-height: 1.6;
+}
+
+#restartBtn {
+    width: 100%;
+    margin-top: 30px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    header h2 {
+        font-size: 1.2rem;
+    }
+
+    .department-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .btn-secondary {
+        order: 2;
+    }
+
+    .btn-primary {
+        order: 1;
+    }
 }

@@ -44,7 +44,6 @@ export default function Home() {
 
       const data = await response.json()
       
-      // 추천된 동아리 찾기
       const deptData = clubData.학과별_전공동아리.find(
         d => d.학과 === selectedDepartment
       )
@@ -75,40 +74,34 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen flex items-start md:items-center justify-center p-4 py-8">
-      <div className="max-w-4xl w-full bg-white rounded-3xl shadow-2xl p-6 md:p-12 animate-fadeIn my-auto">
-        <header className="text-center mb-8 pb-4 border-b-4 border-primary">
-          <h1 className="text-3xl md:text-5xl font-bold text-primary mb-2">
-            🎓 선린인터넷고등학교
-          </h1>
-          <h2 className="text-xl md:text-3xl text-gray-600">
-            전공동아리 추천 시스템
-          </h2>
-        </header>
+    <div className="container">
+      <header>
+        <h1>🎓 선린인터넷고등학교</h1>
+        <h2>전공동아리 추천 시스템</h2>
+      </header>
 
-        {step === 'department' && (
-          <DepartmentSelection onSelect={handleDepartmentSelect} />
-        )}
+      {step === 'department' && (
+        <DepartmentSelection onSelect={handleDepartmentSelect} />
+      )}
 
-        {step === 'survey' && (
-          <Survey
-            department={selectedDepartment}
-            onComplete={handleSurveyComplete}
-            onBack={handleRestart}
-          />
-        )}
+      {step === 'survey' && (
+        <Survey
+          department={selectedDepartment}
+          onComplete={handleSurveyComplete}
+          onBack={handleRestart}
+        />
+      )}
 
-        {step === 'loading' && <Loading />}
+      {step === 'loading' && <Loading />}
 
-        {step === 'result' && recommendedClub && (
-          <Result
-            department={selectedDepartment}
-            recommendedClub={recommendedClub}
-            aiReason={aiReason}
-            onRestart={handleRestart}
-          />
-        )}
-      </div>
+      {step === 'result' && recommendedClub && (
+        <Result
+          department={selectedDepartment}
+          recommendedClub={recommendedClub}
+          aiReason={aiReason}
+          onRestart={handleRestart}
+        />
+      )}
     </div>
   )
 }
